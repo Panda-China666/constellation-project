@@ -37,5 +37,6 @@ class Handler(SimpleHTTPRequestHandler):
             self.send_response(400);self.send_header('Content-Type','application/json');self.end_headers();self.wfile.write(json.dumps({'error':str(e)}).encode())
 if __name__=='__main__':
     print('Website: http://127.0.0.1:4173  |  Editor: http://127.0.0.1:4173/studio.html',flush=True)
+    server=ThreadingHTTPServer(('127.0.0.1',4173),Handler)
     webbrowser.open('http://127.0.0.1:4173/studio.html')
-    ThreadingHTTPServer(('127.0.0.1',4173),Handler).serve_forever()
+    server.serve_forever()
