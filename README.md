@@ -1,62 +1,54 @@
 # 群星计划 · Constellation
 
-原创云海与浮岛首页，极简研究笔记阅读界面。为个人知识、研究课程、日常随笔而建。静态发布到 GitHub Pages，编辑器只在本地运行。
+人工智能课程与个人随笔网站。首页采用原创电影感云海场景、柔光、雾层和轻微动态，课程与写作界面保持简约。
 
-## 立即开始
+- 网站：https://panda-china666.github.io/constellation-project/
+- **创作工作室：https://panda-china666.github.io/constellation-project/studio.html**
+- 仓库：https://github.com/Panda-China666/constellation-project
 
-1. 解压项目后，双击 `start-editor.cmd`（当前电脑已有 Python 3.10）。
-2. 浏览器会打开 http://127.0.0.1:4173/admin.html 。网站首页是 http://127.0.0.1:4173/ 。
-3. 左侧选择文章，分别编辑中文和 English；支持 Markdown、表格、代码块、`$x^2$`、`$$E=mc^2$$`、`\(...\)`、`\[...\]`。
-4. 点击“预览当前语言”查看排版和公式；点击“保存并生成网站”，或 Ctrl+S。保存是真实写入本地文件，不是浏览器临时存储。
-5. “管理目录”可修改栏目名称与说明、新建栏目、调整栏目顺序；文章用上移/下移调整顺序。
-6. 新文章默认为草稿。准备公开时改成“公开发布”，再保存。随笔按日期从新到旧展示。
+## 直接在网页上编辑
 
-关闭命令窗口即停止编辑器；再次双击即可继续。修改前建议备份或使用 Git 版本历史。编辑器不提供自动保存，请留意未保存提示。
+首页右上角点击“创作工作室”；课程正文中也有“编辑这篇内容”入口。
 
-## GitHub 发布（仓库名：constellation-project）
+工作室左侧管理课程和随笔，中间是 CodeMirror Markdown 编辑器，右侧实时显示排版与 LaTeX 公式。可以切换“中文 / English”，分别修改标题和正文。支持分屏、专注写作、单独预览、标题、列表、代码、表格、公式与 Markdown 导出。
 
-项目仓库：https://github.com/Panda-China666/constellation-project
+“文章设置”修改编号、日期、栏目和发布状态；左侧“栏目”修改中英文目录名称、介绍与顺序，也可以新建栏目、移除空栏目。“＋ 课程”和“＋ 随笔”新建独立草稿。
 
-网站：https://panda-china666.github.io/constellation-project/
+编辑自动保存于**当前浏览器的本机草稿**，刷新后可以恢复。它不会自动更新公开网站，也不会跨浏览器同步。请定期“导出内容备份”，避免清理浏览器数据造成草稿丢失。
 
-发布状态请查看仓库 Actions。此前在聊天中暴露的密钥应在本次发布完成后撤销，网站运行不依赖该密钥。
+## 更新网站
 
-可用 GitHub Desktop 克隆上述仓库，或将本地项目接入同一远端。请确保 `index.html`、`build.py`、`content`、`.github` 在仓库根目录，不要把包含本项目的外层目录作为根目录。
+点击“发布到网站”，填写有此仓库 Contents 写入权限的 GitHub 密钥，然后点击“提交并触发部署”。密钥只在请求中发送到 GitHub API，不写入文件或浏览器存储；关闭弹窗或发布结束后清空输入框。
 
-仓库 Settings → Pages → Build and deployment → Source 选择 **GitHub Actions**。推送 main 分支后，随项目提供的工作流会生成 `dist` 并部署。首次设置后可在 Actions 手动运行 Deploy Constellation。
+公开目录与标为“公开发布”的文章会提交至 main；工作室不会将未发布草稿提交到远端。GitHub Actions 随后自动生成网站。提交成功后可在“查看部署记录”跟进，部署完成后刷新网站。
 
-所有站内资源采用相对路径，兼容 GitHub Pages 仓库子路径。
+只有仓库拥有者或有相应写入权限的协作者能更新远端。访客可以使用工作室编辑自己的本机副本，但没有你的密钥就不能修改你的网站。远端若在提交期间被其他人修改，工作室会拒绝覆盖，请先导出草稿、刷新核对。
 
-GitHub 官方部署说明：https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages
+## 编辑本地项目
 
-日常更新：本地编辑器保存 → GitHub Desktop 查看修改并提交 → Push origin → Actions 自动发布。不需要把任何 GitHub 密钥放进网站。
+方法一：在 Chrome / Edge 中打开工作室，点击“打开本地项目”，选择本项目根目录（里面有 content 文件夹）。当前草稿会先导出备份。之后“保存本机”会将修改写入所选文件夹。
 
-## 内容与双语
+方法二：双击 `start-editor.cmd`。需要 Python 3.10+，无第三方 Python 依赖。启动后打开 http://127.0.0.1:4173/studio.html 。点击“保存本机”会写入项目文件并重新构建网站。
 
-- 10 门课程，5 条研究主轴，另设“我的随笔”。
-- 中文课程从你提供的原始资料导入；原文件另保存在 `content/source.md` 供核对，不进入发布产物。
-- 英文课程是从原材料整理的技术主题纲要摘要，**不是完整逐段译文**，正文中有明确说明。可在本地编辑器逐步扩充。
-- 开篇随笔是一篇明确标注的可替换示例。
-- 原始材料中论文年份、前沿成果与引用未逐项核查，保留为个人学习规划，不应视为已验证的学术参考文献。
+本地项目可以通过 GitHub Desktop 提交与推送，或在工作室使用“发布到网站”。本地 Git 提交会包含提交者选择的所有文件；公开仓库中的文件均可被他人读取。
 
-## 文件结构
+“导出内容备份”下载包含 `content/catalog.json`、双语 Markdown 及 `studio-backup.json` 的 ZIP。解压到一个备份目录后，可通过“打开本地项目”读取其中的 content 文件夹。
 
-- `content/catalog.json`：目录、文章元数据、发布状态与顺序。
-- `content/文章ID.zh.md` / `文章ID.en.md`：两种语言的 Markdown 正文。
-- `index.html` / `style.css` / `app.js`：网站源码、原创矢量风景和浏览器交互。
-- `admin.html` / `admin.js` / `editor.py`：本地双语编辑器。
-- `build.py`：零第三方 Python 依赖的静态构建。
-- `.github/workflows/pages.yml`：GitHub Pages 自动部署。
-- `dist/`：生成的公开站点，排除编辑器、草稿及原始资料备份。
+## 课程内容
 
-## 构建与依赖
+共 10 门课程，分为数学与学习理论、生成模型与世界模型、计算与系统、强化学习与决策、推理与自主智能五类。中英文均按课程简介、先修基础、周次安排、学习目标、研究任务与成果要求整理。
 
-运行 `python build.py`。本地服务为 Python 标准库，不需要 npm、数据库或云端后台。
+原材料中的周次主题保留；对话口吻、咨询建议、无效来源标记和未核查的前沿新闻段落不作为课程正文。“我的随笔”初始为空，等待作者创作。原始材料留在 `content/source.md` 供校对，不进入静态站点。
 
-Markdown 使用 marked 15.0.12，经 DOMPurify 3.2.6 过滤；公式使用 MathJax 3.2.2。它们目前从 jsDelivr CDN 加载，字体从 Google Fonts 加载，因此完整排版与公式预览需要联网。字体不可用时使用本地字体；Markdown 库不可用时以安全的原始文本显示。后续可将这些依赖下载到仓库改为自托管，获得更好的离线体验。
+## 构建与文件
 
-网站采用响应式布局并尊重减少动画偏好，但本次环境的浏览器不能访问本地预览服务，尚未完成桌面和手机的视觉与交互实测。已通过 Python 构建、JavaScript 语法检查与发布内容一致性检查。上线前请在本机浏览器确认页面、语言切换、保存及公式预览。
+运行 `python build.py` 生成 dist；推送 main 后 `.github/workflows/pages.yml` 自动部署 GitHub Pages。
 
-## 设计方向
+- content：目录和中英文 Markdown。
+- studio.html / studio.js / studio.css：可直接访问的创作工作室。
+- index.html / app.js / style.css：首页、课程区、随笔与阅读器。
+- assets：原创首页图片。
+- vendor：CodeMirror 5、marked、DOMPurify、MathJax 与 fflate，附许可证。
+- editor.py：仅绑定回环地址的本地文件保存服务。
 
-以温柔的青蓝天空、暖白色光、云海、浮岛与小小旅人为首页意象。原创 SVG 与 CSS 绘制，未使用《光·遇》游戏素材。阅读区域使用低饱和纸白、细线和留白。
+编辑器、Markdown、数学渲染与首页素材均随站点自托管，不依赖外部 CDN 加载。使用系统字体。首次打开需要联网下载站点；浏览器已载入的编辑界面可继续写作并保存本机草稿，发布仍需联网。

@@ -139,15 +139,6 @@
       "titleEn": "Foundations of Machine Reasoning and Autonomous Intelligence",
       "date": "2026-11-01",
       "published": true
-    },
-    {
-      "id": "first-light",
-      "code": "NOTE 001",
-      "category": "journal",
-      "titleZh": "第一束光：写在群星计划开始时",
-      "titleEn": "First light: a beginning",
-      "date": "2026-11-01",
-      "published": true
     }
   ]
 }
