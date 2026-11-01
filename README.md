@@ -1,54 +1,56 @@
 # 群星计划 · Constellation
 
-人工智能课程与个人随笔网站。首页采用原创电影感云海场景、柔光、雾层和轻微动态，课程与写作界面保持简约。
+首页保留原创云海晨光场景；课程区与个人博客采用 **Material for MkDocs** 成熟主题。线上只提供阅读，编辑器仅在本机运行，不进入 GitHub Pages 部署产物，也不上传编辑器源码到仓库的当前版本。
 
-- 网站：https://panda-china666.github.io/constellation-project/
-- **创作工作室：https://panda-china666.github.io/constellation-project/studio.html**
-- 仓库：https://github.com/Panda-China666/constellation-project
+- 首页：https://panda-china666.github.io/constellation-project/
+- 课程区：https://panda-china666.github.io/constellation-project/zh/courses/
+- 个人博客：https://panda-china666.github.io/constellation-project/zh/blog/
+- 英文课程：https://panda-china666.github.io/constellation-project/en/courses/
 
-## 直接在网页上编辑
+## 本地编辑
 
-首页右上角点击“创作工作室”；课程正文中也有“编辑这篇内容”入口。
+使用本次提供的完整 ZIP，保留 `.local-editor` 文件夹。双击 **start-editor.cmd**，打开本地创作工作室。当前电脑的依赖已装入项目 `.venv`；在新电脑首次运行会安装 requirements.txt，需要 Python 3.10+ 和网络。
 
-工作室左侧管理课程和随笔，中间是 CodeMirror Markdown 编辑器，右侧实时显示排版与 LaTeX 公式。可以切换“中文 / English”，分别修改标题和正文。支持分屏、专注写作、单独预览、标题、列表、代码、表格、公式与 Markdown 导出。
+左侧是可折叠的课程树。选中 T1，再点“添加子课程”，即可建立 T1 下的子课程；选中这个子课程再点同一按钮，还可以继续往下建立。每一级都可以有中英文正文与下级内容，未设置固定层数上限。
 
-“文章设置”修改编号、日期、栏目和发布状态；左侧“栏目”修改中英文目录名称、介绍与顺序，也可以新建栏目、移除空栏目。“＋ 课程”和“＋ 随笔”新建独立草稿。
+“课程设置 → 上级课程”可以移动节点及其整棵子树；不能移动到自己或自己的后代下面。箭头调整同级顺序。“移入回收站”保留整棵子树与正文，回收站可以恢复。左侧“栏目”管理顶层研究方向。
 
-编辑自动保存于**当前浏览器的本机草稿**，刷新后可以恢复。它不会自动更新公开网站，也不会跨浏览器同步。请定期“导出内容备份”，避免清理浏览器数据造成草稿丢失。
+“＋ 随笔”新建博客文章。中英文分别编辑，日期、发布状态、分类在设置中管理。Markdown、LaTeX、实时预览、导出与双语独立标题均保留。
 
-## 更新网站
+工作室有两种保存：编辑时自动缓存本机草稿；点击“保存本机”会真正写入 content 文件夹并构建网站。草稿与标为草稿的节点的全部子节点不进入发布产物。请定期导出备份。发布状态为“公开发布”后，可在本地工作室点击“发布到网站”，填写仅限此仓库的 GitHub 凭证，提交目录和公开内容；凭证不写入项目或浏览器存储。
 
-点击“发布到网站”，填写有此仓库 Contents 写入权限的 GitHub 密钥，然后点击“提交并触发部署”。密钥只在请求中发送到 GitHub API，不写入文件或浏览器存储；关闭弹窗或发布结束后清空输入框。
+也可以双击 **open-vscode.cmd**，或点本地工作室的“打开 VS Code”，用已安装的 VS Code 编辑 Markdown 文件。GitHub Desktop 也可以提交本地修改。
 
-公开目录与标为“公开发布”的文章会提交至 main；工作室不会将未发布草稿提交到远端。GitHub Actions 随后自动生成网站。提交成功后可在“查看部署记录”跟进，部署完成后刷新网站。
+## 课程结构
 
-只有仓库拥有者或有相应写入权限的协作者能更新远端。访客可以使用工作室编辑自己的本机副本，但没有你的密钥就不能修改你的网站。远端若在提交期间被其他人修改，工作室会拒绝覆盖，请先导出草稿、刷新核对。
+`content/catalog.json` 是树形目录。每个节点有唯一 id、可为空的 parentId、中英文标题、分类、日期、发布状态与类型。正文仍为 `content/节点ID.zh.md` 和 `.en.md`，移动课程不会改变正文文件名。
 
-## 编辑本地项目
+当前整理为 10 门主课程、85 个专题与 T1 概率论下的 4 个章节。专题内容是原课程大纲拆分后的学习提纲，**不是已经写完的完整讲义**。每个节点均可继续补充和细分。博客保留为空，等待作者发布自己的文章。
 
-方法一：在 Chrome / Edge 中打开工作室，点击“打开本地项目”，选择本项目根目录（里面有 content 文件夹）。当前草稿会先导出备份。之后“保存本机”会将修改写入所选文件夹。
+生成后的路径包含层级，例如：
 
-方法二：双击 `start-editor.cmd`。需要 Python 3.10+，无第三方 Python 依赖。启动后打开 http://127.0.0.1:4173/studio.html 。点击“保存本机”会写入项目文件并重新构建网站。
+`/zh/courses/t1/t1-m1/t1-conditional/`
 
-本地项目可以通过 GitHub Desktop 提交与推送，或在工作室使用“发布到网站”。本地 Git 提交会包含提交者选择的所有文件；公开仓库中的文件均可被他人读取。
+对应：T1 → 概率论基础 → 条件期望。网站侧栏可以逐层展开，正文右侧有页内目录，支持搜索、明暗模式、移动端导航和英文版本。
 
-“导出内容备份”下载包含 `content/catalog.json`、双语 Markdown 及 `studio-backup.json` 的 ZIP。解压到一个备份目录后，可通过“打开本地项目”读取其中的 content 文件夹。
+## 构建与部署
 
-## 课程内容
+运行 `.venv/Scripts/python.exe build.py`。构建器依据目录树生成 MkDocs Markdown 与导航，再生成 dist/zh 与 dist/en。推送 main 后 GitHub Actions 安装固定版本依赖并自动发布。
 
-共 10 门课程，分为数学与学习理论、生成模型与世界模型、计算与系统、强化学习与决策、推理与自主智能五类。中英文均按课程简介、先修基础、周次安排、学习目标、研究任务与成果要求整理。
+- `.generated/`：临时生成的文档与配置，不进入 Git。
+- `.local-editor/`：本地管理器及其依赖，已被 Git 忽略；仅完整 ZIP 中提供。
+- `.venv/`：本地 Python 环境，不进入 Git 或交付 ZIP。
+- `dist/`：静态阅读站点；不包含工作室、管理接口或编辑器依赖。
+- `build.py`：树形校验、双语导航与站点构建。
+- `theme.css`：成熟主题的小幅配色与排版定制。
+- `vendor/mathjax.js`：自托管公式渲染器。
 
-原材料中的周次主题保留；对话口吻、咨询建议、无效来源标记和未核查的前沿新闻段落不作为课程正文。“我的随笔”初始为空，等待作者创作。原始材料留在 `content/source.md` 供校对，不进入静态站点。
+从 GitHub 直接克隆会获得阅读站点源码；本地可视化管理器请使用完整项目 ZIP。此前已发布的旧工作室地址会返回 404，网站导航不再显示编辑入口。
 
-## 构建与文件
+## 采用的开源项目
 
-运行 `python build.py` 生成 dist；推送 main 后 `.github/workflows/pages.yml` 自动部署 GitHub Pages。
+- Material for MkDocs：https://github.com/squidfunk/mkdocs-material ，MIT 许可证。课程导航、排版、搜索、移动端和博客引擎均来自真实主题。
+- CS 自学指南参考配置：https://raw.githubusercontent.com/PKUFlyingPig/cs-self-learning/master/mkdocs.yml 。参考其以 Material 承载分层学习内容的方式，未复制其课程正文。
+- 本地管理器继续使用 CodeMirror、marked、DOMPurify、MathJax、fflate，许可证随 `.local-editor/vendor` 保存。
 
-- content：目录和中英文 Markdown。
-- studio.html / studio.js / studio.css：可直接访问的创作工作室。
-- index.html / app.js / style.css：首页、课程区、随笔与阅读器。
-- assets：原创首页图片。
-- vendor：CodeMirror 5、marked、DOMPurify、MathJax 与 fflate，附许可证。
-- editor.py：仅绑定回环地址的本地文件保存服务。
-
-编辑器、Markdown、数学渲染与首页素材均随站点自托管，不依赖外部 CDN 加载。使用系统字体。首次打开需要联网下载站点；浏览器已载入的编辑界面可继续写作并保存本机草稿，发布仍需联网。
+首页美术为此前生成的原创场景，生成记录随交付文件提供。
