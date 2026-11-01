@@ -1,0 +1,153 @@
+{
+  "categories": [
+    {
+      "id": "theory",
+      "number": "01",
+      "zh": "数学与学习理论",
+      "en": "Mathematics & Learning Theory",
+      "descriptionZh": "理解智能的数学语言。",
+      "descriptionEn": "The mathematical language of intelligence."
+    },
+    {
+      "id": "models",
+      "number": "02",
+      "zh": "生成模型与世界模型",
+      "en": "Generative & World Models",
+      "descriptionZh": "从概率分布，到可以想象的世界。",
+      "descriptionEn": "From probability to imagined worlds."
+    },
+    {
+      "id": "systems",
+      "number": "03",
+      "zh": "计算与系统",
+      "en": "Computing & Systems",
+      "descriptionZh": "让想法在真实的硬件上生长。",
+      "descriptionEn": "Ideas, brought to life on real hardware."
+    },
+    {
+      "id": "decision",
+      "number": "04",
+      "zh": "强化学习与决策",
+      "en": "Reinforcement Learning",
+      "descriptionZh": "在不确定中学习行动。",
+      "descriptionEn": "Learning to act under uncertainty."
+    },
+    {
+      "id": "intelligence",
+      "number": "05",
+      "zh": "推理与自主智能",
+      "en": "Reasoning & Intelligence",
+      "descriptionZh": "探索学习、记忆与思考的边界。",
+      "descriptionEn": "Exploring the edges of learning and thought."
+    },
+    {
+      "id": "journal",
+      "number": "06",
+      "zh": "我的随笔",
+      "en": "Field Notes",
+      "descriptionZh": "收集那些一闪而过的光。",
+      "descriptionEn": "A place for fleeting sparks."
+    }
+  ],
+  "posts": [
+    {
+      "id": "t1",
+      "code": "T1",
+      "category": "theory",
+      "titleZh": "机器学习的高级数学基础",
+      "titleEn": "Advanced Mathematical Foundations of Machine Learning",
+      "date": "2026-11-01",
+      "published": true
+    },
+    {
+      "id": "t2",
+      "code": "T2",
+      "category": "theory",
+      "titleZh": "深度学习理论前沿",
+      "titleEn": "Frontiers in Deep Learning Theory",
+      "date": "2026-11-01",
+      "published": true
+    },
+    {
+      "id": "g1",
+      "code": "G1",
+      "category": "models",
+      "titleZh": "深度生成模型基础",
+      "titleEn": "Foundations of Deep Generative Models",
+      "date": "2026-11-01",
+      "published": true
+    },
+    {
+      "id": "g2",
+      "code": "G2",
+      "category": "models",
+      "titleZh": "大语言模型：生成学习与架构",
+      "titleEn": "Large Language Models — Generative Learning and Architecture",
+      "date": "2026-11-01",
+      "published": true
+    },
+    {
+      "id": "g3",
+      "code": "G3",
+      "category": "models",
+      "titleZh": "多模态表征学习与世界模型",
+      "titleEn": "Multimodal Representation Learning & World Models",
+      "date": "2026-11-01",
+      "published": true
+    },
+    {
+      "id": "s1",
+      "code": "S1",
+      "category": "systems",
+      "titleZh": "GPU 计算、编译器与高效算子",
+      "titleEn": "GPU Computing, Compilers & Efficient Kernels",
+      "date": "2026-11-01",
+      "published": true
+    },
+    {
+      "id": "s2",
+      "code": "S2",
+      "category": "systems",
+      "titleZh": "基础模型分布式训练与推理系统",
+      "titleEn": "Distributed Foundation Model Training & Inference Systems",
+      "date": "2026-11-01",
+      "published": true
+    },
+    {
+      "id": "r1",
+      "code": "R1",
+      "category": "decision",
+      "titleZh": "高级强化学习与随机控制",
+      "titleEn": "Advanced Reinforcement Learning & Stochastic Control",
+      "date": "2026-11-01",
+      "published": true
+    },
+    {
+      "id": "r2",
+      "code": "R2",
+      "category": "decision",
+      "titleZh": "面向推理与自适应智能的强化学习",
+      "titleEn": "Reinforcement Learning for Reasoning & Adaptive Intelligence",
+      "date": "2026-11-01",
+      "published": true
+    },
+    {
+      "id": "i1",
+      "code": "I1",
+      "category": "intelligence",
+      "titleZh": "机器推理与自主智能基础",
+      "titleEn": "Foundations of Machine Reasoning and Autonomous Intelligence",
+      "date": "2026-11-01",
+      "published": true
+    },
+    {
+      "id": "first-light",
+      "code": "NOTE 001",
+      "category": "journal",
+      "titleZh": "第一束光：写在群星计划开始时",
+      "titleEn": "First light: a beginning",
+      "date": "2026-11-01",
+      "published": true
+    }
+  ]
+}
