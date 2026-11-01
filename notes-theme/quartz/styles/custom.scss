@@ -1,0 +1,62 @@
+@use "./base.scss";
+:root {
+  --bodyFont: "Inter", "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --headerFont: "Inter", "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+body { background-image: radial-gradient(var(--lightgray) .6px, transparent .6px); background-size: 9px 9px; }
+.page > #quartz-body { column-gap: 2rem; }
+@media (min-width: 1201px) {
+  .page > #quartz-body { grid-template-columns: 260px minmax(0, 1fr) 240px; }
+}
+.page > #quartz-body > .center {
+  background: var(--light); padding: 2.4rem 2.8rem 3rem;
+  margin-top: 4.5rem; border: 1px solid var(--lightgray); border-radius: 3px 14px 14px 3px;
+  box-shadow: -5px 0 0 -2px var(--light), -6px 0 0 -2px var(--lightgray), 0 16px 60px #282d2310;
+  min-width: 0; box-sizing: border-box;
+}
+.page > #quartz-body > .center > .page-header { margin-top: 0; }
+.page-title { font-size: 1.65rem; letter-spacing: -.04em; }
+.article-title { font-size: clamp(1.8rem, 3vw, 2.5rem); letter-spacing: -.04em; line-height: 1.45; }
+article { font-size: 1rem; line-height: 1.95; }
+article h2 { margin-top: 2.5rem; font-size: 1.35rem; }
+article h3 { font-size: 1.1rem; }
+.notebook-label { font-size: .59rem; letter-spacing: .16em; color: var(--gray); margin: .3rem 0 1rem; }
+.notebook-nav { border-bottom: 1px solid var(--lightgray); padding-bottom: 1.3rem; }
+.notebook-nav nav { display: grid; gap: .2rem; }
+.notebook-nav nav a { display: flex; justify-content: space-between; align-items: center; padding: .6rem .7rem; border-radius: 5px; font-size: .88rem; color: var(--darkgray); font-weight: 400; }
+.notebook-nav nav a span { font-size: .75rem; color: var(--gray); }
+.notebook-nav nav a.selected { background: var(--highlight); color: var(--secondary); font-weight: 600; }
+.language-link { display: inline-block; padding: .8rem .7rem 0; font-size: .75rem; font-weight: 400; }
+.notebook-kicker { font-family: monospace; font-size: .68rem; color: var(--tertiary); letter-spacing: .16em; margin-top: 0; }
+.notebook-intro { font-size: 1.05rem; color: var(--darkgray); margin-bottom: 2.8rem; }
+.notebook-empty { margin: 2rem 0; padding: 2rem 1.5rem 3rem 2.5rem; border-left: 2px solid color-mix(in srgb, var(--secondary) 35%, transparent); background: repeating-linear-gradient(transparent 0, transparent 35px, var(--lightgray) 35px, var(--lightgray) 36px); line-height: 36px; min-height: 180px; }
+.notebook-empty .empty-number { font-family: monospace; font-size: .7rem; letter-spacing: .14em; color: var(--gray); }
+.notebook-empty h2 { font-size: 1.25rem; margin: 36px 0 0; line-height: 36px; }
+.notebook-empty p { font-size: .85rem; margin: 0; line-height: 36px; color: var(--gray); }
+.note-entry { display: block; padding: 1.5rem 0; border-top: 1px solid var(--lightgray); background: transparent !important; font-weight: 400; }
+.note-entry time { font-family: monospace; color: var(--gray); font-size: .75rem; }
+.note-entry strong { display: block; font-size: 1.12rem; color: var(--dark); margin: .35rem 0; font-weight: 600; }
+.note-entry .note-summary { display: block; font-size: .88rem; color: var(--darkgray); line-height: 1.8; }
+.note-entry .note-tags { display: block; font-size: .72rem; margin-top: .6rem; color: var(--secondary); }
+.note-entry:hover strong { color: var(--secondary); }
+.notebook-count { font-size: .75rem; color: var(--gray); border-top: 1px solid var(--lightgray); padding-top: 1rem; }
+.recent-notes h3, .toc h3, .backlinks h3 { font-size: .85rem; }
+.sidebar.right { font-size: .85rem; }
+footer { font-size: .75rem; opacity: .7; }
+@media (max-width: 1200px) {
+  .page > #quartz-body { column-gap: 1.5rem; }
+  .page > #quartz-body > .center { padding: 2rem; }
+}
+@media (max-width: 800px) {
+  .page > #quartz-body > .sidebar.left { flex-wrap: wrap; gap: .5rem; }
+  .sidebar.left > .page-title { flex: 1; }
+  body { background-image: none; }
+  .page > #quartz-body > .center { margin-top: .5rem; padding: 1.5rem 1.2rem; box-shadow: none; }
+  .notebook-nav { width: 100%; padding-bottom: .8rem; }
+  .notebook-nav nav { display: flex; gap: .3rem; flex-wrap: wrap; }
+  .notebook-nav nav a { gap: .8rem; }
+  .notebook-label { display: none; }
+  .language-link { padding-top: .5rem; }
+  .notebook-empty { padding-left: 1.2rem; }
+  .notebook-empty h2 { font-size: 1.1rem; }
+}

@@ -53,14 +53,14 @@ def build():
  generated=ROOT/'.generated';generated.mkdir(exist_ok=True)
  children=lambda id:[p for p in published if p.get('parentId')==id and p['category']!='journal']
  for lang in ('zh','en'):
-  title='群星计划' if lang=='zh' else 'Constellation';courses='课程区' if lang=='zh' else 'Courses';blog='个人博客' if lang=='zh' else 'Blog';overview='课程概览' if lang=='zh' else 'Overview';key='titleZh' if lang=='zh' else 'titleEn'
+  title='群星计划' if lang=='zh' else 'Constellation';courses='课程区' if lang=='zh' else 'Courses';blog='我的随笔' if lang=='zh' else 'Field notes';overview='课程概览' if lang=='zh' else 'Overview';key='titleZh' if lang=='zh' else 'titleEn'
   docs=generated/('docs-'+lang)
   if docs.exists():assert docs.resolve().parent==generated.resolve();shutil.rmtree(docs)
-  docs.mkdir();(docs/'courses').mkdir();(docs/'blog/posts').mkdir(parents=True)
+  docs.mkdir();(docs/'courses').mkdir();
   (docs/'theme.css').write_bytes((ROOT/'theme.css').read_bytes())
   (docs/'mathjax-config.js').write_bytes((ROOT/'mathjax-config.js').read_bytes())
   (docs/'mathjax.js').write_bytes((ROOT/'vendor/mathjax.js').read_bytes())
-  (docs/'index.md').write_text(f'# {title}\n\n'+('人工智能课程与研究笔记。' if lang=='zh' else 'Artificial intelligence courses and research notes.')+f'\n\n[**{courses} →**](courses/index.md) · [**{blog} →**](blog/index.md)\n',encoding='utf-8')
+  (docs/'index.md').write_text(f'# {title}\n\n'+('人工智能课程与研究笔记。' if lang=='zh' else 'Artificial intelligence courses and research notes.')+f'\n\n[**{courses} →**](courses/index.md) · [**{blog} →**]({BASE}{lang}/blog/)\n',encoding='utf-8')
   def nav_node(p):
    path=course_path(p,nodes);kids=children(p['id']);label=(p['code']+' · ' if p.get('kind')=='course' else '')+p[key]
    if kids:return {label:[{overview:path}]+[nav_node(k) for k in kids]}
@@ -80,12 +80,7 @@ def build():
   (docs/'courses/index.md').write_text(index,encoding='utf-8')
   for p in published:
    text=(ROOT/f"content/{p['id']}.{lang}.md").read_text(encoding='utf-8-sig')
-   if p['category']=='journal':
-    tags=p.get('tags',[])
-    meta={'date':date.fromisoformat(str(p['date'])),'slug':p['id']}
-    if tags:meta['categories']=tags
-    text='---\n'+yaml.safe_dump(meta,allow_unicode=True,sort_keys=False)+'---\n\n# '+p[key]+'\n\n'+text
-    (docs/f"blog/posts/{p['id']}.md").write_text(text,encoding='utf-8');continue
+   if p['category']=='journal':continue
    path=docs/course_path(p,nodes);path.parent.mkdir(parents=True,exist_ok=True)
    heading=(p['code']+' · ' if p.get('kind')=='course' else '')+p[key]
    content='# '+heading+'\n\n'+text+'\n'
@@ -95,14 +90,14 @@ def build():
     for kid in kids:content+=f'- [{kid[key]}]({kid["id"]}/index.md)\n'
    path.write_text(content,encoding='utf-8')
   intro=('记录学习过程中的问题、日常与独立思考。' if lang=='zh' else 'Questions, observations and independent thinking along the way.')
-  empty=('尚未发布随笔。' if lang=='zh' else 'No notes published yet.') if not any(p['category']=='journal' for p in published) else ''
-  (docs/'blog/index.md').write_text('# '+('我的随笔' if lang=='zh' else 'Field notes')+'\n\n'+intro+'\n\n'+empty+'\n',encoding='utf-8')
-  config={'site_name':title,'site_url':BASE+lang+'/','site_description':intro,'docs_dir':str(docs),'site_dir':str(out/lang),'theme':{'name':'material','language':lang,'font':False,'features':['navigation.tabs','navigation.tabs.sticky','navigation.indexes','navigation.sections','navigation.top','navigation.footer','toc.follow','search.highlight','search.suggest','content.code.copy'],'palette':[{'scheme':'default','primary':'custom','accent':'teal','toggle':{'icon':'material/weather-night','name':'切换深色模式' if lang=='zh' else 'Dark mode'}},{'scheme':'slate','primary':'custom','accent':'teal','toggle':{'icon':'material/weather-sunny','name':'切换浅色模式' if lang=='zh' else 'Light mode'}}]},'nav':[{'首页' if lang=='zh' else 'Home':BASE},{courses:course_nav},{blog:'blog/index.md'}],'plugins':[{'search':{'lang':['en','zh'] if lang=='zh' else ['en']}},{'blog':{'blog_dir':'blog','post_url_format':'{slug}','post_date_format':'yyyy-MM-dd','draft_if_future_date':False,'pagination_per_page':8,'archive_name':'归档' if lang=='zh' else 'Archive','categories_name':'分类' if lang=='zh' else 'Categories'}}],'markdown_extensions':['admonition','attr_list','md_in_html','footnotes','tables',{'toc':{'permalink':True}},'pymdownx.details',{'pymdownx.superfences':{}},{'pymdownx.arithmatex':{'generic':True}}],'extra_css':['theme.css'],'extra_javascript':['mathjax-config.js','mathjax.js'],'extra':{'alternate':[{'name':'简体中文','link':BASE+'zh/courses/','lang':'zh'},{'name':'English','link':BASE+'en/courses/','lang':'en'}]},'copyright':'群星计划 · Constellation'}
+  config={'site_name':title,'site_url':BASE+lang+'/','site_description':intro,'docs_dir':str(docs),'site_dir':str(out/lang),'theme':{'name':'material','language':lang,'font':False,'features':['navigation.tabs','navigation.tabs.sticky','navigation.indexes','navigation.sections','navigation.top','navigation.footer','toc.follow','search.highlight','search.suggest','content.code.copy'],'palette':[{'scheme':'default','primary':'custom','accent':'teal','toggle':{'icon':'material/weather-night','name':'切换深色模式' if lang=='zh' else 'Dark mode'}},{'scheme':'slate','primary':'custom','accent':'teal','toggle':{'icon':'material/weather-sunny','name':'切换浅色模式' if lang=='zh' else 'Light mode'}}]},'nav':[{'首页' if lang=='zh' else 'Home':BASE},{courses:course_nav},{blog:BASE+lang+'/blog/'}],'plugins':[{'search':{'lang':['en','zh'] if lang=='zh' else ['en']}}],'markdown_extensions':['admonition','attr_list','md_in_html','footnotes','tables',{'toc':{'permalink':True}},'pymdownx.details',{'pymdownx.superfences':{}},{'pymdownx.arithmatex':{'generic':True}}],'extra_css':['theme.css'],'extra_javascript':['mathjax-config.js','mathjax.js'],'extra':{'alternate':[{'name':'简体中文','link':BASE+'zh/courses/','lang':'zh'},{'name':'English','link':BASE+'en/courses/','lang':'en'}]},'copyright':'群星计划 · Constellation'}
   conf=generated/f'mkdocs-{lang}.yml';conf.write_text(yaml.safe_dump(config,allow_unicode=True,sort_keys=False),encoding='utf-8')
   subprocess.run([sys.executable,'-m','mkdocs','build','--config-file',str(conf)],cwd=ROOT,check=True)
+ from build_notes import build_notes
+ build_notes(ROOT,published,out)
  (out/'.nojekyll').touch()
  # Machine-readable route map is public content only, not an editing API.
  routes={p['id']:{l:BASE+l+'/'+course_path(p,nodes).removesuffix('index.md') for l in ('zh','en')} for p in published if p['category']!='journal'}
  (out/'routes.json').write_text(json.dumps(routes,ensure_ascii=False),encoding='utf-8')
- print(f'Built Material course and blog sites: {len(published)} content nodes. Editor excluded.')
+ print(f'Built Material courses and Quartz notebook: {len(published)} content nodes. Editor excluded.')
 if __name__=='__main__':build()

@@ -1,6 +1,6 @@
 # 群星计划 · Constellation
 
-首页保留原创云海晨光场景；课程区与个人博客采用 **Material for MkDocs** 成熟主题。线上只提供阅读，编辑器仅在本机运行，不进入 GitHub Pages 部署产物，也不上传编辑器源码到仓库的当前版本。
+网站采用三个独立模板：首页保留原创云海晨光场景；课程区采用 **Material for MkDocs**；我的随笔采用 **Quartz 4.5.2** 数字笔记主题，配以纸张色、墨绿导航和纸页正文。线上只提供阅读，编辑器仅在本机运行，不进入 GitHub Pages 部署产物，也不上传编辑器源码到仓库的当前版本。
 
 - 首页：https://panda-china666.github.io/constellation-project/
 - 课程区：https://panda-china666.github.io/constellation-project/zh/courses/
@@ -35,7 +35,9 @@
 
 ## 构建与部署
 
-运行 `.venv/Scripts/python.exe build.py`。构建器依据目录树生成 MkDocs Markdown 与导航，再生成 dist/zh 与 dist/en。推送 main 后 GitHub Actions 安装固定版本依赖并自动发布。
+运行 `.venv/Scripts/python.exe build.py`。需要 Python 3.10+ 与 Node.js 22+。构建器先依据目录树生成 Material 课程，再从同一份 content 生成中英文 Quartz 笔记本。首次本地保存时自动运行 npm ci 安装锁定的笔记主题依赖；之后直接构建。推送 main 后 GitHub Actions 安装固定版本依赖并自动发布。
+
+随笔沿用本地编辑器的“＋随笔”、中英文标题与正文、日期、标签和草稿设置。公开笔记自动按日期倒序收纳，支持搜索、标签页、页内目录、阅读模式、深浅色、Markdown、LaTeX，以及 `[[笔记ID]]` 形式的双向链接和反向链接。笔记发布路径仍为 `/zh/blog/笔记ID/` 与 `/en/blog/笔记ID/`。尚未写作时显示空白笔记页，不生成示例文章。三个区域的模板和构建互相独立。
 
 - `.generated/`：临时生成的文档与配置，不进入 Git。
 - `.local-editor/`：本地管理器及其依赖，已被 Git 忽略；仅完整 ZIP 中提供。
@@ -49,7 +51,8 @@
 
 ## 采用的开源项目
 
-- Material for MkDocs：https://github.com/squidfunk/mkdocs-material ，MIT 许可证。课程导航、排版、搜索、移动端和博客引擎均来自真实主题。
+- Material for MkDocs：https://github.com/squidfunk/mkdocs-material ，MIT 许可证。课程导航、排版、搜索和移动端来自真实主题。
+- Quartz：https://github.com/jackyzha0/quartz ，MIT 许可证。固定于 v4.5.2（4923affa），主题引擎源码与 LICENSE.txt 保存在 notes-theme。保留原生笔记搜索、标签、目录、链接与阅读功能，定制纸张配色、首页收纳和站点导航；未启用图谱。笔记通过本地编辑器维护，不需要使用 Quartz 的同步命令。
 - CS 自学指南参考配置：https://raw.githubusercontent.com/PKUFlyingPig/cs-self-learning/master/mkdocs.yml 。参考其以 Material 承载分层学习内容的方式，未复制其课程正文。
 - 本地管理器继续使用 CodeMirror、marked、DOMPurify、MathJax、fflate，许可证随 `.local-editor/vendor` 保存。
 

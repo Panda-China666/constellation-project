@@ -5,3 +5,7 @@ dist/
 __pycache__/
 *.tmp
 .env
+node_modules/
+.quartz-cache/
+public/
+*.tsbuildinfo
