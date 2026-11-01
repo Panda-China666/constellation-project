@@ -48,7 +48,7 @@ def build_notes(root, published, out, theme=None):
             excerpt = re.sub(r'[#*_`>\[\]]', '', excerpt)
             excerpt = ' '.join(excerpt.split())
             excerpt = excerpt[:140] + ('…' if len(excerpt) > 140 else '')
-            tags = ' · '.join('#' + t for t in p.get('tags', []))
+            tags = ' · '.join(p.get('tags', []))
             index += f'<a class="note-entry" href="{p["id"]}/"><time datetime="{p["date"]}">{p["date"]}</time><strong>{escape(p[key])}</strong><span class="note-summary">{escape(excerpt)}</span><span class="note-tags">{escape(tags)}</span></a>\n\n'
         index += '<p class="notebook-count">' + (f'{len(notes):02d} 篇记录 · 持续生长的笔记本' if zh else f'{len(notes):02d} notes · An evolving notebook') + '</p>\n'
         (docs / 'index.md').write_text('---\n' + yaml.safe_dump({'title': title, 'description': intro, 'enableToc': False}, allow_unicode=True) + '---\n\n' + index, encoding='utf-8')
